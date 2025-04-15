@@ -192,7 +192,7 @@ class TestAllPlayers(unittest.TestCase):
         player = Player(1, "JohnDoe")
         player_db = [player]
         all_players = AllPlayers("2021-01-01", player_db)
-        all_players.remove_player(player)
+        all_players.remove_player(player.id)
         self.assertNotIn(player, player_db)
 
     def test_remove_player_not_found(self):
