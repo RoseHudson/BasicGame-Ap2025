@@ -1,12 +1,18 @@
 from player import Player
 from allPlayers import AllPlayers
+from info import Info
+from interface import Interface
 
 
-player_db = [Player(1, "JohnDoe")]
-all_players = AllPlayers("2021-01-01", player_db)
-all_players.all_player_details()
-all_players.add_player(Player(1, "JohnDoe"))
-print("***")
-all_players.all_player_details()
-all_players.remove_player(1)
+print("____" * 15)
+p1 = Player(1, 'user1', 'Boss')
+p3 = Player(3, True)
+p2 = Player(2, 231, 'Noob')
+
+database = AllPlayers("May12", [p1, p2, p3])
+info = Info("Battle bots", "a robot fighting game", database)
+
+inter = Interface("750x500", info)
+inter.add_message()
+inter.play_game()
 

@@ -2,77 +2,67 @@ import tkinter as tk
 
 
 class Interface:
-    def __init__(self, taille_de_fenetre, details_initiaux):
-        self.details_initiaux = details_initiaux
-        self.fenetre = tk.Tk()
-        self.fenetre.title(details_initiaux.nom)
-        self.fenetre.geometry(taille_de_fenetre)
+    def __init__(self, window_size, info):
+        self.info = info
+        self.window = tk.Tk()
+        self.window.title(info.game_name)
+        self.window.geometry(window_size)
 
-    def ajouter_message(self):
-        message_initial = tk.Label(self.fenetre, text=self.details_initiaux.retourner_info(), font=('Arial', 14))
-        message_initial.pack(expand=True)
+    def add_message(self):
+        initial_message = tk.Label(self.window, text=self.info.welcome_message(), font=('Arial', 14))
+        initial_message.pack(expand=True)
 
-        bouton_de_connexion = tk.Button(self.fenetre, text="Se connecter", command=self.fenetre_de_connexion)
-        bouton_de_connexion.pack(pady=5)
-        bouton_insciption = tk.Button(self.fenetre, text="S'inscrire", command=self.fenetre_inscription)
-        bouton_insciption.pack(pady=5)
+        sign_in_button = tk.Button(self.window, text="Sign In!", command=self.sign_in_page)
+        sign_in_button.pack(pady=5)
+        register_button = tk.Button(self.window, text="Sign up!", command=self.register_page)
+        register_button.pack(pady=5)
 
         
-    def fenetre_de_connexion(self):
-        for widget in self.fenetre.winfo_children():
+    def sign_in_page(self):
+        for widget in self.window.winfo_children():
             widget.destroy()
 
-        message_de_connexion = tk.Label(self.fenetre, text="Veuillez entrer vos informations de connexion", font=('Arial', 14))
-        message_de_connexion.pack(pady=10)
+        sign_in_message = tk.Label(self.window, text="Please enter your information to sign in!", font=('Arial', 14))
+        sign_in_message.pack(pady=10)
 
-        etiquette_nom = tk.Label(self.fenetre, text="Nom d'utilisateur:")
-        etiquette_nom.pack(pady=2)  
-        entrez_nom = tk.Entry(self.fenetre, width=30)
-        entrez_nom.pack(pady=2)
+        username_label = tk.Label(self.window, text="Username:")
+        username_label.pack(pady=2)  
+        username_feild = tk.Entry(self.window, width=30)
+        username_feild.pack(pady=2)
 
-        etiquette_pass = tk.Label(self.fenetre, text="Mot de passe: ")
-        etiquette_pass.pack(pady=2)
-        entrez_pass = tk.Entry(self.fenetre, width=30, show="*")
-        entrez_pass.pack(pady=2)
+        password_label = tk.Label(self.window, text="Password: ")
+        password_label.pack(pady=2)
+        password_feild = tk.Entry(self.window, width=30, show="*")
+        password_feild.pack(pady=2)
 
-        bouton_de_connexion = tk.Button(self.fenetre, text="Se connecter", command=self.message_de_connexion)
-        bouton_de_connexion.pack(pady=5)
+        sign_in_button = tk.Button(self.window, text="Sign In!", command=self.sign_in_message)
+        sign_in_button.pack(pady=5)
 
-    def fenetre_inscription(self):
-        for widget in self.fenetre.winfo_children():
+    def register_page(self):
+        for widget in self.window.winfo_children():
             widget.destroy()
 
-        message_inscription = tk.Label(self.fenetre, text="Veuillez saisir vos informations pour vous inscrire à votre compte Battle Bots", font=('Arial', 14))
-        message_inscription.pack(pady=10)
+        registration_message = tk.Label(self.window, text=f"Please enter your information for your new {self.info.game_name} account!", font=('Arial', 14))
+        registration_message.pack(pady=10)
 
-        etiquette_nom = tk.Label(self.fenetre, text="Nom d'utilisateur:")
-        etiquette_nom.pack(pady=2)  
-        entrez_nom = tk.Entry(self.fenetre, width=30)
-        entrez_nom.pack(pady=2)
+        username_label = tk.Label(self.window, text="Your new username:")
+        username_label.pack(pady=2)  
+        username_feild = tk.Entry(self.window, width=30)
+        username_feild.pack(pady=2)
 
-        etiquette_nom = tk.Label(self.fenetre, text="Nom d'utilisateur:")
-        etiquette_nom.pack(pady=2)  
-        entrez_nom = tk.Entry(self.fenetre, width=30)
-        entrez_nom.pack(pady=2)
+        password_label = tk.Label(self.window, text="Your new password: ")
+        password_label.pack(pady=2)
+        password_feild = tk.Entry(self.window, width=30, show="*")
+        password_feild.pack(pady=2)
 
-        etiquette_nom = tk.Label(self.fenetre, text="Nom d'utilisateur:")
-        etiquette_nom.pack(pady=2)  
-        entrez_nom = tk.Entry(self.fenetre, width=30)
-        entrez_nom.pack(pady=2)
+        sign_in_button = tk.Button(self.window, text="Sign Up!", command=self.sign_in_message)
+        sign_in_button.pack(pady=5)
 
-        etiquette_pass = tk.Label(self.fenetre, text="Mot de passe: ")
-        etiquette_pass.pack(pady=2)
-        entrez_pass = tk.Entry(self.fenetre, width=30, show="*")
-        entrez_pass.pack(pady=2)
+    def sign_in_message(self):
+        print("Login button clicked")
 
-        bouton_de_connexion = tk.Button(self.fenetre, text="Se connecter", command=self.message_de_connexion)
-        bouton_de_connexion.pack(pady=5)
-
-    def message_de_connexion(self):
-        print("Bouton de connexion cliqué")
-
-    def message_inscription(self):
-        print("bouton d'inscription cliqué")
+    def registration_message(self):
+        print("Sign up button clicked.")
         
-    def gerer_le_jeu(self):
-        self.fenetre.mainloop()
+    def play_game(self):
+        self.window.mainloop()
